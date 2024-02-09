@@ -1,0 +1,45 @@
+﻿<Window x:Class="Minecraft.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Minecraft"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Border BorderThickness="1" BorderBrush="Black">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <DataGrid Grid.ColumnSpan="2" x:Name="dataGrid" CanUserAddRows="False" ItemsSource="{Binding MobList}"
+                    AutoGenerateColumns="False" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="False" SelectedItem="{Binding SelectedMob}" CellEditEnding="DataGrid_CellEditEnding" Grid.Column="2" Margin="12,178,0,0">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Название моба" Binding="{Binding MobName}" />
+                        <DataGridTextColumn Header="Здоровье" Binding="{Binding MobHealth}" />
+                        <DataGridTextColumn Header="Спавн" Binding="{Binding Location}" />
+                        <DataGridTextColumn Header="Дроп" Binding="{Binding Drop}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Button Name="StartBtn" Grid.Column="0" Grid.Row="5" Content="Загрузить">
+                    <Button.Command>
+                        <Binding Path="StartParsingCommand" Mode="OneWay" />
+                    </Button.Command>
+                </Button>
+
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
