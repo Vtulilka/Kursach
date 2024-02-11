@@ -1,7 +1,10 @@
-﻿using Minecraft.DataBase;
+﻿using Minecraft.Controllers;
+using Minecraft.DataBase;
+using Minecraft.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,12 +48,14 @@ namespace Minecraft.ViewModel
         private Controllers.Command getMobs;
         public Controllers.Command GetMobs
         {
+            
             get
             {
                 getMobs = new Controllers.Command(obj =>
                 {
                     using (var db = new MobsDbContext())
                     {
+
                         var MobsInDb = db.Mobs.OrderBy(x => x.MobId).ToList();
 
                         MobList = MobsInDb.Select(x => new Models.Mob
@@ -59,13 +64,13 @@ namespace Minecraft.ViewModel
                             MobName = x.MobName,
                             MobHealth = x.MobHealth,
                             Drop = x.Drop,
-                            Location = x.Location
+                            Location = x.Location,
                         }).ToList();
                     }
                 });
                 return getMobs;
             }
-        }
+        } 
 
         private async Task StartParsing()
         {

@@ -29,3 +29,4 @@ C:\Users\Виктория\Desktop\Study\Архитектура ИС\курсач
 C:\Users\Виктория\Desktop\Study\Архитектура ИС\курсач\Minecraft\Minecraft\obj\Debug\Minecraft.csproj.CopyComplete
 C:\Users\Виктория\Desktop\Study\Архитектура ИС\курсач\Minecraft\Minecraft\obj\Debug\Minecraft.exe
 C:\Users\Виктория\Desktop\Study\Архитектура ИС\курсач\Minecraft\Minecraft\obj\Debug\Minecraft.pdb
+C:\Users\Виктория\Desktop\Study\Архитектура ИС\курсач\Minecraft\Minecraft\obj\Debug\GeneratedInternalTypeHelper.g.cs

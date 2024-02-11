@@ -75,6 +75,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\MyConverter.cs" />
     <Compile Include="Controllers\DataBaseController.cs" />
     <Compile Include="ViewModel\Mine.cs" />
     <Page Include="MainWindow.xaml">

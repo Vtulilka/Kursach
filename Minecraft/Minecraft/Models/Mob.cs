@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Minecraft.Controllers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +21,12 @@ namespace Minecraft.Models
         {
             Location = new List<Location>();
             Drop = new List<Drop>();
+        }
+
+        [NotMapped]
+        public string LoactionAsString
+        {
+            get { return string.Join("\n", Location.Select(x => x.SpawnName)); }
         }
     }
 }
