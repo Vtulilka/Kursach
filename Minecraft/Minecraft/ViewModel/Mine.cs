@@ -70,7 +70,7 @@ namespace Minecraft.ViewModel
         private async Task StartParsing()
         {
             Parser = new Controllers.HtmlController();
-            await Parser.ParseData();
+            await Parser.Parse();
             GetMobs.Execute(null);
             //IsDataLoaded = true;
         }
