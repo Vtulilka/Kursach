@@ -14,6 +14,7 @@ namespace Minecraft.Controllers
 {
     public class HtmlController
     {
+        
         private int count = 0;
         private List<Models.Location> UniqueLocation = new List<Models.Location>();
         private List<string> UniqueDrop = new List<string>();
@@ -30,6 +31,7 @@ namespace Minecraft.Controllers
         }
         public async Task Parse()
         {
+            
             HtmlWeb htmlWeb = new HtmlWeb();
             HtmlDocument htmlDoc = new HtmlDocument();
 
@@ -66,7 +68,6 @@ namespace Minecraft.Controllers
                                 MobName = Name,
                                 MobHealth = int.Parse(Health),
                             };
-                            db.Mobs.Add(mob);
 
                             HtmlNodeCollection locationCollection = htmlDoc.DocumentNode.SelectNodes("//div[@class='pi-item pi-data pi-item-spacing pi-border-color' and @data-source='spawn']/div/a");
                             string loc = "unknown";
@@ -75,16 +76,19 @@ namespace Minecraft.Controllers
                                 foreach (HtmlNode location in locationCollection)
                                 {
                                     loc = location.InnerText;
-                                }
-                                if (!db.Locations.Any(a => a.SpawnName == loc))
-                                {
-                                    Models.Location location = new Location
+                                    Location _loc = new Location();
+                                    if (!db.Locations.Any(a => a.SpawnName == loc))
                                     {
-                                        SpawnName = loc,
-                                    };
-                                    db.Locations.Add(location);
-                                    mob.Location.Add(location);
+                                        _loc.SpawnName = loc;                                        
+                                        db.Locations.Add(_loc);
+                                    }
+                                    else
+                                    {
+                                        _loc = db.Locations.Where(p => p.SpawnName == loc).First();
+                                    }
+                                    mob.Location.Add(_loc);
                                 }
+
                             }
                             else
                             {
@@ -98,22 +102,27 @@ namespace Minecraft.Controllers
                                 foreach (HtmlNode dropElement in dropCollection)
                                 {
                                     drop = dropElement.Attributes["title"].Value;
-                                }
-                                if (!db.Drops.Any(c => c.DropName == drop))
-                                {
-                                    Models.Drop drop1 = new Drop
+                                    Drop _drop = new Drop();
+                                    if (!db.Drops.Any(c => c.DropName == drop))
                                     {
-                                        DropName = drop,
-                                    };
-                                    db.Drops.Add(drop1);
-                                    mob.Drop.Add(drop1);
+                                        _drop.DropName = drop;
+                                        db.Drops.Add(_drop);
+                                    }
+                                    else
+                                    {
+                                        _drop = db.Drops.Where(p => p.DropName == drop).First();
+                                    }
+                                    mob.Drop.Add(_drop);
                                 }
+
                             }
                             else
                             {
 
                             }
+
                             count++;
+                            db.Mobs.Add(mob);
                             db.SaveChanges();
 
                         }

@@ -23,10 +23,10 @@ namespace Minecraft.Models
             Drop = new List<Drop>();
         }
 
-        [NotMapped]
-        public string LoactionAsString
-        {
-            get { return string.Join("\n", Location.Select(x => x.SpawnName)); }
-        }
+        //[NotMapped]
+        //public string LoactionAsString
+        //{
+        //    get { return string.Join("\n", Location.Select(x => x.SpawnName)); }
+        //}
     }
 }
